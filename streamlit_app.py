@@ -139,7 +139,8 @@ if not st.session_state.username:
         if submit_button and username:
             st.session_state.username = username
             st.session_state.conversation_history.append(f"🤖 Welcome, {username}! What would you like to study?")
-            st.experimental_rerun()
+            st.rerun()
+
 
 # Main conversation area
 if st.session_state.username:
@@ -180,7 +181,8 @@ if st.session_state.username:
             st.session_state.conversation_history.append(f"📚 {final_output}")
             
             # Clear the input
-            st.experimental_rerun()
+            st.rerun()
+
     
     # Sidebar with additional options
     with st.sidebar:
@@ -211,11 +213,13 @@ if st.session_state.username:
         st.subheader("Quick Actions")
         if st.button("Create Study Plan"):
             st.session_state.conversation_history.append("👤 I want to create a new study plan")
-            st.experimental_rerun()
+            st.rerun()
+
         
         if st.button("Check Progress"):
             st.session_state.conversation_history.append("👤 How is my progress?")
-            st.experimental_rerun()
+            st.rerun()
+
         
         if st.button("Generate Quiz"):
             if plan and plan['study_plan']:
@@ -223,7 +227,8 @@ if st.session_state.username:
                 for topic in plan['study_plan']:
                     if not topic['completed']:
                         st.session_state.conversation_history.append(f"👤 Generate a quiz on {topic['topic']}")
-                        st.experimental_rerun()
+                        st.rerun()
+
                         break
             else:
                 st.warning("Create a study plan first to generate quizzes")
